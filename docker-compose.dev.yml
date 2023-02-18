@@ -1,0 +1,16 @@
+version: "3"
+services:
+  nginx:
+    image: nginx:stable-alpine
+    ports:
+      - "4000:80" 
+  backend-app: 
+    build: 
+      context: .
+      args:
+        NODE_ENV: development
+    environment:
+      - NODE_ENV=development
+      - MONGODB_USER=root
+      - MONGODB_PASSWORD=password
+    command: npm run dev
